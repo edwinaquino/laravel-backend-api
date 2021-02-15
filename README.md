@@ -15,21 +15,38 @@ This is a RESTful API App on Laravel 8 with built-tin Passport for API authentic
 * Composer
 * Postman or Insomnia or any other API development platform
 
-## Getting Started
-To get started follow these steps below.
+## Installation
+To deply and install this script, follow these steps below.
 
 1. Clone this repository<br>
 ```$ git clone https://github.com/edwinaquino/laravel-backend-api.git```
 2. Change directory into the app.<br>
 ```$ cd laravel-backend-api```<br>
-3. Change directory into the app.<br>
-```$ composer install```<br>
-3. Build the docker container in your local machine. <br>
-```$ docker-compose up -d --build```
+3. Install Dependencies<br>
+```$ docker run --rm -v $(pwd):/opt -w /opt laravelsail/php80-composer:latest composer install```<br>
+NOTE: If this is the first time building this container, this make take a while to build the container. Approximately 5 minutes depending on your environment and network connection.
+4. Give the proper permissions <br>
+```$ sudo chown -R $USER: .```
+5. Start the servers with Sail <br>
+```$ vendor/bin/sail up -d```
+6. Access the MySQL server to create our database called  <br>
+```# mysql --password=  --execute='create database laravel_backend_api'```
+```exit```
+7. Access the docker container terminal <br>
+```vendor/bin/sail bash```
+8. Create .env File <br>
+```cp .env.example .env```
+9. Open .env and change the following line: <br>
+FROM: ```DB_HOST=127.0.0.1```
+TO: ```DB_HOST=mysql```
+10. Generate a Key. The APP_KEY in the .env file will be populated<br>
+```php artisan key:generate```
+11. Rebuild the seed. <br>
+```php artisan migrate:fresh --seed```
+12. Install passport <br>
+```php artisan passport:install --force```
 
-If this is the first time building this container, this make take a while to build the container. Approximately 5 minutes depending on your environment and network connection.
-
-4. open: http://localhost
+13. open: http://localhost
 
 # API Testing
 
@@ -45,6 +62,7 @@ body KEY and VALUE
 * password: password123
 * password_confirmation: password123
 
+![insomnia-create-user-api](https://user-images.githubusercontent.com/30946443/107925605-8162a500-6f29-11eb-8004-5acf22ec594f.jpg)
 
 ### Login user
 /create endpoint creates a user in the database, now you can log into your account.
