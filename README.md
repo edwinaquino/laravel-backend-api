@@ -12,6 +12,8 @@ This is a RESTful API App on Laravel 8 with built-tin Passport for API authentic
 * Git
 * Terminal
 * Laravel 8
+* Laravel Sail
+* Laravel Passport
 * Composer
 * Postman or Insomnia or any other API development platform
 
@@ -29,15 +31,15 @@ NOTE: If this is the first time building this container, this make take a while 
 ```$ sudo chown -R $USER: .```
 5. Start the servers with Sail <br>
 ```$ vendor/bin/sail up -d```
-6. Access the MySQL server to create our database called  <br>
-```# mysql --password=  --execute='create database laravel_backend_api'```
-```exit```
-7. Access the docker container terminal <br>
+6. Access the docker container terminal <br>
 ```vendor/bin/sail bash```
+7. Access the MySQL server to create our database called  <br>
+```# mysql --password=  --execute='create database laravel_backend_api'```<br>
+```exit```
 8. Create .env File <br>
 ```cp .env.example .env```
 9. Open .env and change the following line: <br>
-FROM: ```DB_HOST=127.0.0.1```
+FROM: ```DB_HOST=127.0.0.1```<br>
 TO: ```DB_HOST=mysql```
 10. Generate a Key. The APP_KEY in the .env file will be populated<br>
 ```php artisan key:generate```
